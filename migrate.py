@@ -14,6 +14,7 @@ def convert_date(obj):
 def mongo_insert(data:list, collection:str):
     collection = db[collection]
     try:
+        
         result = collection.insert_many(data)
         print(f"Inserted {len(result.inserted_ids)} documents into collection '{collection}'")
     except Exception as e:
@@ -33,6 +34,7 @@ db = client["autorent"]
 
 # automobile -> done не надо так делать, лучше через item[].isoformat()
 def automobile():
+    print("automobile collection")
     cur = conn.cursor()
     cur.execute("SET lc_monetary TO 'ru_RU.UTF-8';SELECT * FROM automobile")
     dict_data = []
@@ -56,6 +58,7 @@ def automobile():
 
 # claim -> done
 def claim():
+    print("claim collection")
     cur = conn.cursor()
     cur.execute("SET lc_monetary TO 'ru_RU.UTF-8';SELECT * FROM claim")
     keys = ["id", "claim_date", "description"]
@@ -66,6 +69,7 @@ def claim():
 
 # client -> done
 def rent_client():
+    print("client collection")
     cur = conn.cursor()
     cur.execute("SET lc_monetary TO 'ru_RU.UTF-8';SELECT * FROM client")
     keys = ["id", "client_surname", "client_firestname", "client_secondname", "client_birthday", "client_passport",
@@ -77,6 +81,7 @@ def rent_client():
 
 # employee -> done
 def employee():
+    print("employee collection")
     cur = conn.cursor()
     cur.execute("SET lc_monetary TO 'ru_RU.UTF-8';SELECT * FROM employee")
     keys = ["id", "employee_surname", "employee_firestname", "employee_secondname", "employee_email", "employee_phone"]
@@ -87,6 +92,7 @@ def employee():
 
 # invoice -> done
 def invoice():
+    print("invoice collection")
     cur = conn.cursor()
     cur.execute("SET lc_monetary TO 'ru_RU.UTF-8';SELECT * FROM invoice")
     keys = ["id", "invoice_date", "rent_cost"]
@@ -97,6 +103,7 @@ def invoice():
 
 # partner -> done
 def partner():
+    print("partner collection")
     cur = conn.cursor()
     cur.execute("SET lc_monetary TO 'ru_RU.UTF-8';SELECT * FROM partner")
     keys = ["id", "org_name", "org_address", "org_bank", "org_tax"]
@@ -107,6 +114,7 @@ def partner():
 
 # rent -> done
 def rent():
+    print("rent collection")
     cur = conn.cursor()
     cur.execute("SET lc_monetary TO 'ru_RU.UTF-8';SELECT * FROM rent")
     keys = ["id", "automobile_id", "client_id", "employee_id", "invoice_id", "claim_id", "rent_start",
@@ -119,6 +127,7 @@ def rent():
 
 # service -> done
 def service():
+    print("service collection")
     cur = conn.cursor()
     cur.execute("SET lc_monetary TO 'ru_RU.UTF-8';SELECT * FROM service")
     keys = ["id", "work_date", "address", "automobile_id", "work_id", "partner_id"]
@@ -129,6 +138,7 @@ def service():
 
 # type_of_work -> 
 def work():
+    print("type_of_work collection")
     cur = conn.cursor()
     cur.execute("SET lc_monetary TO 'ru_RU.UTF-8';SELECT * FROM type_of_work")
     keys = ["id", "work", "description"]
